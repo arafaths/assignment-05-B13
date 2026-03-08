@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Issues Tracker</title>
+  <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- daisyUI + tailwindCSS -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Nav-ber -->
+  <nav class="navbar bg-base-100 shadow-sm px-5 md:px-10 flex flex-wrap">
+    <div class="flex-1">
+      <a href="" class="flex items-center gap-2">
+        <img class="w-8" src="./assets/github-logo.png" alt="GitHub Logo">
+        <h2 class="text-2xl font-bold">GitHub Issues Tracker</h2>
+      </a>
+    </div>
+    <div class="flex gap-2 mt-2 md:mt-0">
+      <input type="text" placeholder="Search" class="input input-bordered w-full md:w-auto" />
+      <button class="btn btn-primary">Search</button>
+    </div>
+  </nav>
+
+  <main class="w-11/12 mx-auto mt-5">
+
+    <!-- Filter btn -->
+    <section class="px-5 py-4 mb-5 shadow-sm bg-slate-50 flex gap-2 rounded-sm">
+      <button id="all-btn" onclick="filterToggle('all-btn')" class="btn btn-primary btn-sm w-20">All</button>
+
+      <button id="open-btn" onclick="filterToggle('open-btn')" class="btn btn-primary btn-outline btn-sm w-20">Open</button>
+
+      <button id="closed-btn" onclick="filterToggle('closed-btn')" class="btn btn-primary btn-outline btn-sm w-20">Closed</button>
+    </section>
+
+    <!-- Issues container -->
+    <section class="flex flex-col gap-3 items-start sm:flex-row sm:items-center sm:justify-between px-5 py-2 shadow-sm bg-slate-50 rounded-sm mb-1">
+      <div class="flex items-center gap-2">
+        <img class="p-3 rounded-full bg-[#ECE4FF] w-14" src="./assets/Aperture.png" alt="Aperture">
+        <div class="">
+          <h3 class="text-2xl font-semibold"><span>50</span> Issues</h3>
+          <p class="text-sm text-gray-500">Track and manage your project issues</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 bg-green-500 rounded-full"></span>
+          <p class="font-semibold">Open</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 bg-purple-500 rounded-full"></span>
+          <p class="font-semibold">Closed</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cart container -->
+    <section id="card-container" class="p-5 shadow-sm bg-slate-100 rounded-sm grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+      <!-- Cart -->
+      <!-- <div class="shadow-md bg-slate-50 rounded-md border-t-4 border-green-500">
+        <div class="p-3 space-y-4">
+          <div class="flex justify-between">
+            <img src="./assets/Open-Status.png" alt="">
+            <div class="badge py-1 px-5 font-medium text-red-500 bg-red-100 rounded-full">HIGH</div>
+          </div>
+          <h3 class="text-lg font-semibold">Fix navigation menu on mobile devices</h3>
+          <p class="line-clamp-2 text-sm text-gray-500">The navigation menu doesn't collapse properly on mobile devices Lorem ipsum
+            then more
+          </p>
+          <div class="">
+            <div class="badge ml-2 p-3 font-medium text-red-500 bg-red-100 rounded-full border-3 border-red-200"><i
+                class="fa-solid fa-bug"></i> BUG</div>
+            <div class="badge p-3 font-medium text-yellow-600 bg-yellow-100 rounded-full border-3 border-yellow-200"><i
+                class="fa-regular fa-life-ring"></i> HELP WANTED</div>
+          </div>
+        </div>
+        <hr class="border-gray-300 border-1 ">
+        <div class="p-3 space-y-3">
+          <p class="text-sm text-gray-500">#1 by john_doe</p>
+          <p class="text-sm text-gray-500">1/15/2024</p>
+        </div>
+      </div> -->
+    </section>
+    <div class="">
+      
+    </div>
+  </main>
+
+  <script src="./js/script.js"></script>
+</body>
+
+</html>

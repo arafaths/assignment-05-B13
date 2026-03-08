@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Issues Tracker | Login</title>
+  <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- daisyUI + tailwindCSS -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <section class="max-w-md shadow-xl mx-auto  px-8 py-6 space-y-3 rounded-md bg-white">
+
+    <div class="space-y-5">
+      <img class="mx-auto w-12" src="./assets/github-logo.png" alt="GitHub Logo">
+      <div class="text-center">
+        <h1 class="text-2xl font-bold">GitHub Issues Tracker</h1>
+        <p class="text-sm font-normal text-gray-500">Sign in to manage your issues</p>
+      </div>
+    </div>
+
+    <div class="">
+      <fieldset class="fieldset">
+        <label class="text-sm font-semibold">Username</label>
+        <input id="input-user" type="text" class="input w-full" value="admin" placeholder="Enter Username" />
+        <label class="text-sm font-semibold">Password</label>
+        <div class="relative">
+          <input id="input-pass" type="password" class="input w-full" minlength="8" placeholder="Enter Password"/>
+          <button id="toggle-pass" type="button" class="cursor-pointer absolute right-3 top-3"><i class="fa-solid fa-glasses"></i></button>
+        </div>
+        <div><a class="link link-hover">Forgot password?</a></div>
+        <button id="btn-login" class="btn btn-primary mt-4">Login</button>
+      </fieldset>
+    </div>
+
+    <div class="flex items-center">
+      <hr class="flex-1 text-gray-400">
+      <span class="mx-3 text-sm text-gray-700">OR</span>
+      <hr class="flex-1 text-gray-400">
+    </div>
+
+    <div class="text-center">
+      <p class="text-gray-400 text-xs">Demo Credentials:</p>
+      <div class="py-5 bg-slate-50 rounded-md">
+        <p class="text-sm font-semibold">Username: <span class="font-normal">admin</span></p>
+        <p class="text-sm font-semibold">Password: <span class="font-normal">admin123</span></p>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="./js/login.js"></script>
+  </body>
+
+</html>
