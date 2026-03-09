@@ -4,6 +4,7 @@ const closedBtn = document.getElementById('closed-btn');
 const cardContainer = document.getElementById('card-container');
 const loadingSpn = document.getElementById('loadingSpn');
 const issuesCount = document.getElementById('issues-count');
+const cardModal = document.getElementById('card-modal');
 
 // Loading spinner
 const loadingSpinner = (data)=> {
@@ -103,7 +104,7 @@ const displayCardData = (data) => {
     const cardDiv = document.createElement('div'); 
     cardDiv.setAttribute('card-status', info.status);
     cardDiv.innerHTML = `
-    <div onclick="my_modal_5.showModal()" class="flex flex-col h-full shadow-md bg-slate-50 rounded-md border-t-4 ${info.status === 'open' ? `border-green-500`: `border-purple-500`}">
+    <div onclick="showModal(${info.id})" class="flex flex-col h-full shadow-md bg-slate-50 rounded-md border-t-4 ${info.status === 'open' ? `border-green-500`: `border-purple-500`}">
         <div class="flex-1 p-3 space-y-4">
           <div class="flex justify-between">
             <img src="${info.status === 'open' ? `./assets/Open-Status.png` : `./assets/Closed- Status .png`}" alt="">
@@ -129,5 +130,47 @@ const displayCardData = (data) => {
   })
   loadingSpinner(false);
 }
-
 lodeCardData();
+
+// Show modal
+const showModal = (id) => {
+  cardModal.showModal()
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+    .then(res => res.json())
+    .then(data => {displayModal(data.data)});
+}
+const displayModal = (info) => {
+  cardModal.innerHTML = `
+  <div class="modal-box">
+        <div class="space-y-5">
+          <div class="space-y-2">
+            <h4 class="text-xl font-bold">${info.title}</h4>
+            <div class="text-gray-500 text-xs">
+              <span class="px-2 py-0.5 ${info.status === 'open' ? `bg-green-500` : `bg-red-500`} rounded-full text-xs text-white font-normal">${info.status}</span> • <span>Opened by ${info.author}</span> • <span>${info.createdAt.slice(0,10)}</span>
+            </div>
+          </div>
+          <div class="">
+            ${badgeIconStyle(info.labels)}
+          </div>
+          <p class="text-gray-500 text-sm">${info.description}</p>
+          <div class="flex items-center  p-4 bg-gray-200 rounded-md">
+            <div class="flex-1">
+              <p class="text-gray-500 text-sm">Assignee:</p>
+              <p class="font-semibold">${info.assignee.toUpperCase()}</p>
+            </div>
+            <div class="flex-1">
+              <p class="text-gray-500 text-sm">Priority:</p>
+              <p><span class="px-3 py-0.5 ${info.priority === 'high' ? `bg-red-500 ` : info.priority === 'medium' ? `bg-yellow-500 ` : ` bg-gray-500`} rounded-full text-xs text-white font-normal">${info.priority.toUpperCase()}</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn btn-primary focus:outline-none">Close</button>
+          </form>
+        </div>
+      </div>
+  `
+}
