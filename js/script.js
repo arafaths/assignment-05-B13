@@ -183,5 +183,5 @@ btnSearch.addEventListener('click', () => {
   const inputValue = inputSearch.value.trim().toLowerCase();
   loadingSpinner(true);
   fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`).then(res => res.json()).then(data => displayCardData(data.data));
-  loadingSpinner(false);
+  // loadingSpinner(false);
 })
