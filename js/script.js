@@ -5,6 +5,9 @@ const cardContainer = document.getElementById('card-container');
 const loadingSpn = document.getElementById('loadingSpn');
 const issuesCount = document.getElementById('issues-count');
 const cardModal = document.getElementById('card-modal');
+const inputSearch = document.getElementById('input-search');
+const btnSearch = document.getElementById('btn-search');
+
 
 // Loading spinner
 const loadingSpinner = (data)=> {
@@ -156,7 +159,7 @@ const displayModal = (info) => {
           <div class="flex items-center  p-4 bg-gray-200 rounded-md">
             <div class="flex-1">
               <p class="text-gray-500 text-sm">Assignee:</p>
-              <p class="font-semibold">${info.assignee.toUpperCase()}</p>
+              <p class="font-semibold">${info.assignee.replace('_', ' ').toUpperCase()}</p>
             </div>
             <div class="flex-1">
               <p class="text-gray-500 text-sm">Priority:</p>
@@ -174,3 +177,11 @@ const displayModal = (info) => {
       </div>
   `
 }
+
+// search filter
+btnSearch.addEventListener('click', () => {
+  const inputValue = inputSearch.value.trim().toLowerCase();
+  loadingSpinner(true);
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`).then(res => res.json()).then(data => displayCardData(data.data));
+  loadingSpinner(false);
+})
