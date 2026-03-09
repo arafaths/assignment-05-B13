@@ -122,8 +122,8 @@ const displayCardData = (data) => {
         </div>
         <hr class="border-gray-300 border-1 ">
         <div class="p-3 space-y-3">
-          <p class="text-sm text-gray-500">${info.createdAt}</p>
-          <p class="text-sm text-gray-500">${info.updatedAt}</p>
+          <p class="text-sm text-gray-500">#1 by ${info.author}</p>
+          <p class="text-sm text-gray-500">${info.updatedAt.slice(0, 10)}</p>
         </div>
       </div>
     
@@ -149,7 +149,7 @@ const displayModal = (info) => {
           <div class="space-y-2">
             <h4 class="text-xl font-bold">${info.title}</h4>
             <div class="text-gray-500 text-xs">
-              <span class="px-2 py-0.5 ${info.status === 'open' ? `bg-green-500` : `bg-red-500`} rounded-full text-xs text-white font-normal">${info.status}</span> • <span>Opened by ${info.author}</span> • <span>${info.createdAt.slice(0,10)}</span>
+              <span class="px-2 py-0.5 ${info.status === 'open' ? `bg-green-500` : `bg-red-500`} rounded-full text-xs text-white font-normal">${info.status}</span> • <span>Opened by ${info.author.replace('_', ' ')}</span> • <span>${info.createdAt.slice(0,10)}</span>
             </div>
           </div>
           <div class="">
@@ -182,6 +182,9 @@ const displayModal = (info) => {
 btnSearch.addEventListener('click', () => {
   const inputValue = inputSearch.value.trim().toLowerCase();
   loadingSpinner(true);
-  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`).then(res => res.json()).then(data => displayCardData(data.data));
-  // loadingSpinner(false);
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`).then(res => res.json()).then(data => {
+    displayCardData(data.data);
+    loadingSpinner(false);
+  });
+  
 })
