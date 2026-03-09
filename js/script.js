@@ -50,8 +50,8 @@ const filterToggle = (id) => {
     else {
       card.classList.add('hidden');
     }
+    loadingSpinner(false);
   })
-  loadingSpinner(false);
   // issus count
   const visibleCards = document.querySelectorAll('#card-container > div:not(.hidden)');
   issuesCount.innerText = visibleCards.length;
@@ -149,7 +149,7 @@ const displayModal = (info) => {
           <div class="space-y-2">
             <h4 class="text-xl font-bold">${info.title}</h4>
             <div class="text-gray-500 text-xs">
-              <span class="px-2 py-0.5 ${info.status === 'open' ? `bg-green-500` : `bg-red-500`} rounded-full text-xs text-white font-normal">${info.status}</span> • <span>Opened by ${info.author.replace('_', ' ')}</span> • <span>${info.createdAt.slice(0,10)}</span>
+              <span class="px-2 py-0.5 ${info.status === 'open' ? `bg-green-500` : `bg-purple-500`} rounded-full text-xs text-white font-normal">${info.status}</span> • <span>Opened by ${info.author.replace('_', ' ')}</span> • <span>${info.createdAt.slice(0,10)}</span>
             </div>
           </div>
           <div class="">
@@ -181,6 +181,10 @@ const displayModal = (info) => {
 // search filter
 btnSearch.addEventListener('click', () => {
   const inputValue = inputSearch.value.trim().toLowerCase();
+  if (inputValue === '') {
+    lodeCardData();
+    return;
+  }
   loadingSpinner(true);
   fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`).then(res => res.json()).then(data => {
     displayCardData(data.data);
